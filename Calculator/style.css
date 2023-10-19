@@ -29,6 +29,7 @@ h2 {
     color: antiquewhite;
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
+    cursor: pointer;
 }
 
 .one {
