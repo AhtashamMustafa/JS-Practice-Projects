@@ -1,49 +1,22 @@
-const firstContainer = document.querySelector('#container1')
-const secondContainer = document.querySelector('#container2')
-const thirdContainer = document.querySelector('#container3')
+const navBar = document.querySelector('#navbar')
 const fourthContainer = document.querySelector('#container4')
 
-function classonHandler() {
-    secondContainer.classList.add('visible')
-    secondContainer.classList.remove('hidden')
-    thirdContainer.classList.add('visible')
-    thirdContainer.classList.remove('hidden')
-    fourthContainer.classList.remove('visible')
-    fourthContainer.classList.add('hidden')
+function onHandler() {
+    navBar.classList.remove('hidden')
+    navBar.classList.add('visible')
 }
-function classoffHandler() {
-    secondContainer.classList.remove('visible')
-    secondContainer.classList.add('hidden')
-    thirdContainer.classList.remove('visible')
-    thirdContainer.classList.add('hidden')
-    fourthContainer.classList.add('visible')
-    fourthContainer.classList.remove('hidden')
+function offHandler() {
+navBar.classList.remove('visible')
+navBar.classList.add('hidden')
 }
-function handleResize() {
-    if (window.innerWidth <= 599) {
-        console.log("off")
-        classoffHandler()
-    }else {
-        classonHandler()
+
+function check(){
+    if(navBar.classList.contains('visible')){
+        offHandler()
+    }else if(navBar.classList.contains('hidden')){
+        onHandler()
     }
 }
-// console.log(window.innerWidth)
-
-
-// Add an event listener to handle window resizing
-window.addEventListener('resize', handleResize)
-// if (window.innerWidth <= '425' && window.innerHeight <= '540') {
-//     classoffHandler()
-// } else {
-//     classonHandler()
-// }
-// console.log(secondContainer.classList.contains('visible'))
-// console.log(screen.height)
-
-// console.log(secondContainer.classList.add("hidden"))
-
-&& screen.innerHeight <= 581
-
 
 
 
