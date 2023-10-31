@@ -1,0 +1,33 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.section1{
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.section2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px -150px;
+    width: 90vw;
+    height: 80vh;
+    gap: 10px 100px ;
+}
+.size{
+    width: 285px;
+    height: 200px;
+}
+.flex{
+    /* display: flex !important; */
+    
+}
