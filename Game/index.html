@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="upper">
+            <button class="again" onclick="again()">Again!</button>
+            <span class="between">(Between 1 and 20)</span>
+        </div>
+        <div class="guess">
+            <Span >Guess My Number!</Span>
+        </div>
+        <div class="line"></div>
+        <div class="box">?</div>
+        <div class="lower">
+            <div class="lower1">
+                <div class="inputdiv"><input class="input"  type="number"></div>
+                <button class="check" onclick="check()">Check!</button>
+            </div>
+            <div class="lower2">
+                <div class="start">
+                    <span id="gues">Start Guessing.....</span>
+                </div>
+                <div class="scores">
+                    <div>&#x1f4af;Score:&nbsp;<span class="score"></span></div>
+                    <div>&#x1f947;Highscore:&nbsp;<span class="highscore"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="app.js"></script>
+
+</html>

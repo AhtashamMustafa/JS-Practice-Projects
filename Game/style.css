@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@font-face {
+    font-family: press;
+    src: url(./PressStart2P-Regular.ttf);
+}
+body {
+    background-color: black;
+}
+
+.container {
+
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.upper {
+    display: flex;
+    justify-content: space-between;
+    padding: 5vh 26vw;
+    align-items: center;
+}
+
+.between {
+    color: white;
+    font-size: 0.8rem;
+    font-family:press;
+}
+
+.again {
+    padding: 10px 15px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-family:press;
+}
+
+.guess {
+    display: flex;
+    justify-content: center;
+    align-items: first baseline;
+    height: 12vh;
+    position: relative;
+    color: white;
+    font-size: 1.5rem;
+    font-family:press;
+    margin-top: 30px;
+}
+
+#gues {
+    font-family:press;
+}
+
+.line {
+    margin-top: 6vh;
+    height: 0.5vh;
+    background-color: white;
+    position: relative;
+}
+
+.box {
+    height: 9vh;
+    width: 7vw;
+    background-color: white;
+    position: absolute;
+    left: 47vw;
+    top: 34.2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-family:press;
+}
+
+.lower {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50vh;
+    width: 100vw;
+    padding-left: 15vw;
+    padding-right: 10vw;
+}
+
+.lower1 {
+    height: 15vh;
+}
+
+.check {
+    font-size: 1.3rem;
+    padding: 10px 15px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-family:press;
+    font-size: 0.8rem;  
+}
+
+.input {
+    padding: 5px 15px;
+    font-size: 1.3rem;
+}
+
+.lower2 {
+    color: white;
+    font-size: 0.8rem;
+    height: 10vh;
+    width: 20vw;
+}
+
+.start {
+    margin-bottom: 30px;
+}
+
+.scores {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    font-family:press;
+    
+}
