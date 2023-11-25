@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+
+<body>
+  <div style="background-color: #ccc; position: absolute; width: 24.9vw;height: 81vh; margin-left: 37.2vw;z-index: -1; opacity: 0.6; border-radius: 8px;"></div>
+  <form action="" >
+    <div class="container">
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      <label for="name"><b>Name</b></label>
+      <input id="name" type="text" placeholder="Enter Name" name="name" required>
+
+      <label for="email"><b>Email</b></label>
+      <input id="email" type="email" placeholder="Enter Email" name="email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input id="password" type="password" placeholder="Enter Password" name="psw" required minlength="8">
+
+      <label for="psw-repeat"><b>Confirm Password</b></label>
+      <input id="repeatpassword" type="password" placeholder="Confirm Password" name="psw-repeat" required minlength="8">
+<p>Already an account? <a href="./Login.html" style="color:white;">Log In</a></p>
+
+      <div class="clearfix">
+        <!-- <button type="button" class="cancelbtn">Cancel</button> -->
+        <button type="submit" class="signupbtn"><a style="text-decoration: none; color: white;" href="./Login.html">Sign Up</a></button>
+      </div>
+    </div>
+  </form>
+  <script src="./signup.js"></script>
+</body>
+
+</html>

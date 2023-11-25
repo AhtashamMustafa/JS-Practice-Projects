@@ -1,0 +1,91 @@
+/* Bordered form */
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+body{
+  background: rgb(131,58,180);
+background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+}
+form {
+  /* border: 2px solid #f1f1f1; */
+  width: 25%;
+  margin: auto;
+  margin-top: 100px;
+  font-family: "Poppins", sans-serif;
+  border-radius: 10px;
+  /* background-color: #ccc; */
+  /* opacity: 0.6; */
+}
+
+/* Full-width inputs */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0px 16px 0px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+/* Set a style for all buttons */
+button {
+  /* background-color: #04aa6d; */
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  border-radius: 5px;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: auto;
+  padding: 15px 25px;
+  background: rgb(131,58,180);
+  background: linear-gradient(-16deg, rgba(131,58,180,1) 5%, rgba(253,29,29,1) 40%, rgba(252,176,69,1) 110%);
+  font-size: 1rem;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 14px;
+  border-radius: 10px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}
+h1 {
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+#loginbtn {
+  font-size: 1.1rem;
+  background: rgb(131,58,180);
+  background: linear-gradient(-16deg, rgba(131,58,180,1) 5%, rgba(253,29,29,1) 40%, rgba(252,176,69,1) 110%)
+}
+hr {
+  color: white;
+}
