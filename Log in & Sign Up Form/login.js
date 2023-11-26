@@ -23,7 +23,7 @@ function login() {
   }
   console.log(encodeURIComponent(userName))
   if (userfound) {
-    form.setAttribute("action","./Home.html");
+    // form.setAttribute("action","./Home.html");
     window.location.href ='home.html?user=' + encodeURIComponent(userName)
   } else {
     alert("Incorrect email or password. Please try again.");

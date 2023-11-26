@@ -4,7 +4,7 @@ body{
   background: rgb(131,58,180);
 background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
 }
-form {
+.form {
   /* border: 2px solid #f1f1f1; */
   width: 25%;
   margin: auto;
@@ -48,10 +48,12 @@ button:hover {
 /* Extra style for the cancel button (red) */
 .cancelbtn {
   width: auto;
-  padding: 15px 25px;
+  padding: 15px 15px;
   background: rgb(131,58,180);
   background: linear-gradient(-16deg, rgba(131,58,180,1) 5%, rgba(253,29,29,1) 40%, rgba(252,176,69,1) 110%);
   font-size: 1rem;
+  margin-left: 14px;
+  margin-top: -5px;
 }
 
 /* Add padding to containers */
@@ -63,7 +65,7 @@ button:hover {
 /* The "Forgot password" text */
 span.psw {
   float: right;
-  padding-top: 16px;
+  padding-top: 12px;
 }
 
 /* Change styles for span and cancel button on extra small screens */
@@ -84,7 +86,8 @@ h1 {
 #loginbtn {
   font-size: 1.1rem;
   background: rgb(131,58,180);
-  background: linear-gradient(-16deg, rgba(131,58,180,1) 5%, rgba(253,29,29,1) 40%, rgba(252,176,69,1) 110%)
+  background: linear-gradient(-16deg, rgba(131,58,180,1) 5%, rgba(253,29,29,1) 40%, rgba(252,176,69,1) 110%);
+  padding:10px 10px
 }
 hr {
   color: white;
