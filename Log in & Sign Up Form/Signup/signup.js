@@ -2,6 +2,10 @@ var input = document.querySelectorAll("input");
 var submit = document.querySelector(".signupbtn");
 var cancel = document.querySelector(".cancelbtn");
 var form = document.querySelector("form");
+const loggedInUser = JSON.parse(localStorage.getItem('LoggedInuser'))
+
+if(loggedInUser) window.location.href = '../Home/Home.html'
+
 function signup() {
   if (
     input[0].value == "" ||
@@ -14,9 +18,9 @@ function signup() {
   } else {
     var users = JSON.parse(localStorage.getItem("users")) || [];
     for (let i = 0; i < users.length; i++) {
+      if(users[i].userName === input[0].value) return alert("username is already exist")
       if (users[i].email == input[1].value) {
-        alert("Email already registered. Please use a different email.");
-        return;
+        return alert("Email already registered. Please use a different email.");
       }
     }
     if (input[2].value.length < 8) {
@@ -32,11 +36,13 @@ function signup() {
       });
       localStorage.setItem(`users`, JSON.stringify(users));
       alert("Signup Successful");
-      window.location.href='./Login.html'
-    //   form.setAttribute("action", "./Login.html");
-      console.log("chal rha")
+      setTimeout(() => {
+        window.location.href = '../Login/Login.html'
+    }, 2000)
       return;
     }
   }
 }
 submit.addEventListener("click", signup);
+
+  

@@ -2,18 +2,20 @@ const firstContainer = document.querySelector('#container1')
 const secondContainer = document.querySelector('#container2')
 const thirdContainer = document.querySelector('#container3')
 const fourthContainer = document.querySelector('#container4')
+const loggedin = document.querySelector('#loggedinuser')
+const loggedout = document.querySelector('#logout')
 
 function classonHandler() {
-    secondContainer.classList.add('visible')
-    secondContainer.classList.remove('hidden')
+    // secondContainer.classList.add('visible')
+    // secondContainer.classList.remove('hidden')
     thirdContainer.classList.add('visible')
     thirdContainer.classList.remove('hidden')
     fourthContainer.classList.remove('visible')
     fourthContainer.classList.add('hidden')
 }
 function classoffHandler() {
-    secondContainer.classList.remove('visible')
-    secondContainer.classList.add('hidden')
+    // secondContainer.classList.remove('visible')
+    // secondContainer.classList.add('hidden')
     thirdContainer.classList.remove('visible')
     thirdContainer.classList.add('hidden')
     fourthContainer.classList.add('visible')
@@ -31,23 +33,15 @@ function handleResize() {
 
 
 // Add an event listener to handle window resizing
-window.addEventListener('resize', handleResize)
+window.addEventListener('resize', handleResize);
 
-// Function to get URL parameters by name
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-  }
+const loggedInUser = JSON.parse(localStorage.getItem('LoggedInuser'))
 
-  console.log(getParameterByName('user'))
-  // Get the username from the URL
-  var userName = getParameterByName('users');
-  
-  // Display the username on the page
-  document.getElementsByClassName('welcomeMessage').innerText = userName
-  
+if(!loggedInUser) window.location.href = '../Login/Login.html'
+// Display the username on the page
+loggedin.innerHTML =JSON.parse(localStorage.getItem('LoggedInuser'))[0].username
+
+function logout (){
+    localStorage.removeItem("LoggedInuser")
+    window.location.href = '../Login/Login.html'
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div id="navbar">
+        <div id="container1" class="flex margin welcomeMessage gradient-text "><img id="logo" src="../Assests/Logo-removebg.png" alt=""></div>
+        <!-- <div id="container2" class="flex margin" >
+            <ul class="one none">
+                <li>Home</li>
+                <li>About</li>
+                <li>Projects</li>
+                <li>Contact</li>
+            </ul>
+        </div> -->
+        <div id="container3" class="flex margin">
+            <ul class="two none">
+                <div class="profile" style="display: flex; align-items: center; justify-content: center; gap: 10px;"><li><img class="size" style="height:55px;width:55px; border-radius: 50%; margin-top: -0.5vh;"  src="../Assests/unnamed.jpg" alt="User Image"></li><span id="loggedinuser" class=""></span></div>
+                <li><img class="size" src="../Assests/notification.png" style="height:25px;width:25px;" alt="Notifications"></li>
+                <li><img id="logout" onclick="logout()" class="size" src="../Assests/Log out.png" style="height:22px;width:25px;"alt="Log Out"></li>
+            </ul>
+        </div>
+        <div id="container4" class="hidden margin">
+            <ul class="three none">
+                <li>
+                    <img class="size" src="../Assests/Bars-removebg-preview.png" alt="">
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="welcome">
+        WELCOME! TO WEBSITE
+    </div>
+<script src="./home.js"></script>
+</body>
+</html>

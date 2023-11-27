@@ -87,7 +87,9 @@ h1 {
   font-size: 1.1rem;
   background: rgb(131,58,180);
   background: linear-gradient(-16deg, rgba(131,58,180,1) 5%, rgba(253,29,29,1) 40%, rgba(252,176,69,1) 110%);
-  padding:10px 10px
+  /* padding:10px 10px;
+  margin-left: 15vw; */
+  width: 100%;
 }
 hr {
   color: white;
