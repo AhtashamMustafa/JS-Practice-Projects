@@ -27,10 +27,11 @@ function login() {
     }
   }
   if (userfound) {
-    alert("Login Successful. Redirecting to Home Page")
+    alert("Login Successful.")
+      window.location.href = '../Login/loader.html';
     setTimeout(() => {
       window.location.href = '../Home/Home.html'
-  }, 1000)
+  }, 2000)
     localStorage.setItem('LoggedInuser',JSON.stringify(users))
   } else {
     alert("Invalid credentials.Please try again.");

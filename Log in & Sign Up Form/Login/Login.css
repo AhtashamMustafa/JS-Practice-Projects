@@ -65,7 +65,6 @@ button:hover {
 /* The "Forgot password" text */
 span.psw {
   float: right;
-  padding-top: 12px;
 }
 
 /* Change styles for span and cancel button on extra small screens */
@@ -94,3 +93,9 @@ h1 {
 hr {
   color: white;
 }
+.signup{
+  margin-top: 6vh;
+  position: absolute;
+  cursor: pointer;
+}
+

@@ -36,9 +36,10 @@ function signup() {
       });
       localStorage.setItem(`users`, JSON.stringify(users));
       alert("Signup Successful");
+      window.location.href = '../Login/loader.html'
       setTimeout(() => {
         window.location.href = '../Login/Login.html'
-    }, 2000)
+    }, 3000)
       return;
     }
   }
