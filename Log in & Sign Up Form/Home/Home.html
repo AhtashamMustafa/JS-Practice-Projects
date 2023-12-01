@@ -33,7 +33,7 @@
           >
             <li>
               <img
-                class="size"
+                class="size imagePreview"
                 id="userPreview"
                 style="
                   height: 55px;
@@ -98,7 +98,8 @@
           style="display: flex; align-items: center; justify-content: center; margin-top: 3vh;"
         >
           <img
-            class="size updateimg imagePreview"
+            class="size updateimg  "
+            id="imagePreview"
             style="
               height: 90px;
               width: 90px;
@@ -110,8 +111,8 @@
           />
         </div>
         <div style="margin-top: 3vh;" >
-  <div class="inputMargin file choose" style="display: flex; align-items:center;width: 0 !important;" onchange="previewImage()">
-            <input class="choose1" style="width: 6vw; overflow: hidden;" id="profile" type="file" title=""/>
+  <div class="inputMargin file choose" style="display: flex; align-items:center;width: 0 !important;" >
+            <input class="choose1" style="width: 6vw; overflow: hidden; visibility: hidden;" id="profile" type="file" title="" />
           </div>
           <div class="inputMargin" style="margin-top: 5vh;">
             <label for="name">Username&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>

@@ -8,8 +8,10 @@ let drop = document.querySelector(".dropdown");
 let username = document.querySelector("#name");
 let useremail = document.querySelector("#email");
 let usercontact = document.querySelector("#contact");
-let userimg = document.querySelector(".choose1");
-let updateimg = document.querySelector(".updateimg");
+let usercity = document.querySelector("#city");
+let updateimg = document.querySelector("#imagePreview");
+let userimg = document.querySelector(".imagePreview");
+
 
 function dropdown() {
   drop.style.height = "67vh";
@@ -63,11 +65,22 @@ function logout() {
 
 username.value = JSON.parse(localStorage.getItem("LoggedInuser"))[0].username;
 useremail.value = JSON.parse(localStorage.getItem("LoggedInuser"))[0].email;
+usercontact.value = JSON.parse(localStorage.getItem("LoggedInuser"))[0].contactNo;
+usercity.value = JSON.parse(localStorage.getItem("LoggedInuser"))[0].city;
+userimg.src = JSON.parse(localStorage.getItem("LoggedInuser"))[0].imzageURL;
+updateimg.src = JSON.parse(localStorage.getItem("LoggedInuser"))[0].imgageURL;
 function update() {
     var users = JSON.parse(localStorage.getItem("users")) || [];
-    var loggedInUseremail = JSON.parse(
+    var loggedInUseremail = JSON.parse( 
       localStorage.getItem("LoggedInuser")
     ).email; 
+    var image = document.getElementById('profile');
+
+
+  var imgurl=URL.createObjectURL(image.files[0])
+ document.querySelector('.imagePreview').src = imgurl
+ document.querySelector('#imagePreview').src = imgurl
+
     var index = -1
     for (let i = 0; i<users.length;i++){
       if (users[i].email == useremail.value) {
@@ -79,32 +92,22 @@ function update() {
       users[index].username = username.value;
       users[index].email = useremail.value;
       users[index].contactNo = usercontact.value;
+      users[index].city = usercity.value;
+      users[index].imgageURL = imgurl
       localStorage.setItem('users', JSON.stringify(users));
       localStorage.setItem('LoggedInuser', JSON.stringify(users));
+      alert("Profile has been updated!")
+      setTimeout(dropup(),2000)
     }
 
 }
-// function previewImage() {
-//   // Get the file input element
-//   var fileInput = document.getElementById('profile');
+var image = document.getElementById('profile');
+image.onchange = function(){
 
-//   // Get the image preview element
-//   var imagePreview = document.getElementById('imagePreview');
-//   var userPreview = document.getElementById('userPreview');
-
-//   // Check if a file is selected
-//   if (fileInput.files && fileInput.files[0]) {
-//     // Create a FileReader object
-//     var reader = new FileReader();
-
-//     // Set the callback function to run when the file is loaded
-//     reader.onload = function (e) {
-//       // Set the image source to the result of the FileReader
-//       imagePreview.src = e.target.result;
-//       userPreview.src = e.target.result;
-//     };
-
-//     // Read the selected file as a Data URL
-//     reader.readAsDataURL(fileInput.files[0]);
-//   }
-// }
+  var imgurl=URL.createObjectURL(image.files[0])
+ document.querySelector('.imagePreview').src = imgurl
+ document.querySelector('#imagePreview').src = imgurl
+}
+  
+document.querySelector('#imagePreview').addEventListener("click",function(){
+    document.getElementById('profile').click()})

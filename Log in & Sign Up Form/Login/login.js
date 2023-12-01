@@ -28,7 +28,7 @@ function login() {
   }
   if (userfound) {
     alert("Login Successful.")
-      window.location.href = '../Login/loader.html';
+      // window.location.href = '../Login/loader.html';
     setTimeout(() => {
       window.location.href = '../Home/Home.html'
   }, 2000)

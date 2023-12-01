@@ -36,7 +36,7 @@ function signup() {
       });
       localStorage.setItem(`users`, JSON.stringify(users));
       alert("Signup Successful");
-      window.location.href = '../Login/loader.html'
+      // window.location.href = '../Login/loader.html'
       setTimeout(() => {
         window.location.href = '../Login/Login.html'
     }, 3000)
