@@ -1,12 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-* {
-  /* margin: 0; */
+*{
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-body{
-  background: rgb(131,58,180);
-background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
 }
 
 /* Full-width input fields */
@@ -42,7 +38,12 @@ button {
 button:hover {
   opacity: 1;
 }
-
+.login:hover{
+  color: white;
+}
+.login{
+  color:#1DC399;;
+}
 
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn,
@@ -57,8 +58,7 @@ button:hover {
   margin: auto;
   gap: 100px;
   font-size: 1rem;
-  background: rgb(131,58,180);
-  background: linear-gradient(-16deg, rgba(131,58,180,1) 5%, rgba(253,29,29,1) 40%, rgba(252,176,69,1) 110%);
+  background-color: #1DC399;
 }
 
 /* Add padding to container elements */
@@ -76,56 +76,25 @@ button:hover {
 }
 
 /* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn,
-  .signupbtn {
-    width: 100%;
-  }
-}
-@media screen and (min-width: 1440px) {
-  .form {
-    width: 37%;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .form {
-    width: 35%;
-    padding: 3px 0;
-    font-size: 14px;
-  }
-  .container {
-    padding: 1px;
-    height: 73svh;
-    width: 29svw;
-  }
-  input {
-    padding: 13px;
-    margin: 5px 0 16px 0;
-  }
-}
-@media screen and (min-width: 768px) {
-  .form {
-    width: 20%;
-    padding: 0px 28px 45px 53px;
-    font-size: 16px;
-  }
-  input {
-    padding: 12px;
-  margin: 5px 0 8px 0;
-  font-size: 15px;
-  }
-  .container {
-    padding: 10px;
-    height: 80svh;
-    width: 22svw;
-  }
-}
 .form {
   width: 25%;
   margin: auto;
-  margin-top: 60px;
   font-family: "Poppins", sans-serif;
   padding: 3px 25px;
+  margin-top: 8vh;
+  font-family: "Poppins", sans-serif;
+  border-radius: 10px;
+  background-color: #ccc;
+  height: 85vh;
+  margin-left: 65vw;
+  box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+  position: absolute;
 }
 h1{
   padding: 0;

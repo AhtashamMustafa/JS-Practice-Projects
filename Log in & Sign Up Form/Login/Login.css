@@ -1,20 +1,46 @@
 /* Bordered form */
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-body{
-  background: rgb(131,58,180);
-background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 .form {
   /* border: 2px solid #f1f1f1; */
   width: 25%;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 13vh;
   font-family: "Poppins", sans-serif;
   border-radius: 10px;
-  /* background-color: #ccc; */
-  /* opacity: 0.6; */
+  background-color: #ccc;
+  height: 65vh;
+  margin-left: 65vw;
+  box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+  position: absolute;
 }
-
+#signup{
+  color: #1DC399;
+}
+#signup:hover{
+  color: white;
+}
+.main-container{
+  background-color:#ccc;
+  opacity: 0.6;
+  border-radius: 8px; 
+  /* position: absolute;  */
+  height: 70vh; 
+  width:25.2vw;
+  left: 40vw;
+  z-index:-1;
+  background-color: #ccc;
+}
 /* Full-width inputs */
 input[type="text"],
 input[type="password"] {
@@ -46,15 +72,7 @@ button:hover {
 }
 
 /* Extra style for the cancel button (red) */
-.cancelbtn {
-  width: auto;
-  padding: 15px 15px;
-  background: rgb(131,58,180);
-  background: linear-gradient(-16deg, rgba(131,58,180,1) 5%, rgba(253,29,29,1) 40%, rgba(252,176,69,1) 110%);
-  font-size: 1rem;
-  margin-left: 14px;
-  margin-top: -5px;
-}
+
 
 /* Add padding to containers */
 .container {
@@ -84,8 +102,7 @@ h1 {
 }
 #loginbtn {
   font-size: 1.1rem;
-  background: rgb(131,58,180);
-  background: linear-gradient(-16deg, rgba(131,58,180,1) 5%, rgba(253,29,29,1) 40%, rgba(252,176,69,1) 110%);
+  background-color: #1DC399;
   /* padding:10px 10px;
   margin-left: 15vw; */
   width: 100%;

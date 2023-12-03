@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="home.css" />
   </head>
   <body>
-    <div class="overlay"></div>
+    <!-- <div class="overlay"></div> -->
     <div id="navbar">
       <div id="container1" class="flex margin welcomeMessage gradient-text">
         <img id="logo" src="../Assests/Logo-removebg.png" alt="" />
@@ -41,7 +42,7 @@
                   border-radius: 50%;
                   margin-top: -0.5vh;
                 "
-                src="../Assests/unnamed.jpg"
+                src="../Assests/default profile.png"
                 alt="User Image"
               />
             </li>
@@ -49,6 +50,8 @@
           </div>
           <li>
             <img
+              id="notification"
+              onmousemove="notificationhover()"
               class="size"
               src="../Assests/notification.png"
               style="height: 25px; width: 25px"
@@ -59,6 +62,7 @@
             <img
               id="logout"
               onclick="logout()"
+              onmousemove="logouthover()"
               class="size"
               src="../Assests/Log out.png"
               style="height: 22px; width: 25px"
@@ -80,12 +84,12 @@
       </div>
     </div>
     <div class="dropdown">
-      <!-- dropdown -->
+      <!-- dropdown update profile-->
         
       <div
         style="
-          padding: 2.5vh 3vw;
-          background-color: #febcab;
+          padding:0;
+          background-color:rgb(249, 243, 243);;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -106,7 +110,7 @@
               border-radius: 50%;
               margin-bottom: -3.5vh;
             "
-            src="../Assests/unnamed.jpg"
+            src="../Assests/default profile.png"
             alt="User Image"
           />
         </div>
@@ -115,8 +119,8 @@
             <input class="choose1" style="width: 6vw; overflow: hidden; visibility: hidden;" id="profile" type="file" title="" />
           </div>
           <div class="inputMargin" style="margin-top: 5vh;">
-            <label for="name">Username&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input id="name" type="text" value="" />
+            <label for="user">Username&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input id="user" class="name" type="text" value="" />
           </div>
           <div class="inputMargin">
             <label for="email">E-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
@@ -134,10 +138,138 @@
         </div>
       </div>
 
-      <!-- dropdown -->
+      <!-- dropdown Update profile-->
+    </div>
+    <!-- dropdown -->
+    <div class="main-container">
+      <div class="home"><button class="button">
+        <img class="svg-icon" src="../Assests/house-solid.svg" alt="">
+        <span class="lable">Home</span>
+      </button></div>
+      <div class="my-profile"><button class="button">
+        <img class="svg-icon" src="../Assests/circle-user-solid.svg" alt="">
+        <span class="lable">My Profile</span>
+      </button></div>
+      <div class="setting" onclick="setting()"><button class="button">
+        <img class="svg-icon" src="../Assests/gear-solid.svg" alt="">
+        <span class="lable">Setting</span>
+      </button></div>    
+    </div>
+    <div class="container">
+      <div class="wrapper">
+        <section class="post">
+          <header>Create Post</header>
+          <form action="#">
+            <div class="content">
+              <img class="post-img" src="../Assests/default profile.png" alt="logo">
+              <div class="details">
+                <p id="name"></p>
+                <div class="privacy">
+                  <i class="fas fa-user-friends"></i>
+                  <span>Friends</span>
+                  <i class="fas fa-caret-down"></i>
+                </div>
+              </div>
+            </div>
+            <textarea placeholder="What's on your mind?" spellcheck="false" required></textarea>
+            <div class="theme-emoji">
+              <img src="../Assests/theme.svg" alt="theme">
+              <img src="../Assests/smile.svg" alt="smile">
+            </div>
+            <div class="options">
+              <p>Add to Your Post</p>
+              <ul class="list">
+                <li><img src="../Assests/gallery.svg" alt="gallery"></li>
+                <li><img src="../Assests/tag.svg" alt="gallery"></li>
+                <li><img src="../Assests/emoji.svg" alt="gallery"></li>
+                <li><img src="../Assests/mic.svg" alt="gallery"></li>
+                <li><img src="../Assests/more.svg" alt="gallery"></li>
+              </ul>
+            </div>
+            <button>Post</button>
+          </form>
+        </section>
+        <section class="audience">
+          <header>
+            <div class="arrow-back"><i class="fas fa-arrow-left"></i></div>
+            <p>Select Audience</p>
+          </header>
+          <div class="content">
+            <p>Who can see your post?</p>
+            <span>Your post will show up in News Feed, on your profile and in search results.</span>
+          </div>
+          <ul class="list">
+            <li>
+              <div class="column">
+                <div class="icon"><i class="fas fa-globe-asia"></i></div>
+                <div class="details">
+                  <p>Public</p>
+                  <span>Anyone on or off Facebook</span>
+                </div>
+              </div>
+              <div class="radio"></div>
+            </li>
+            <li class="active">
+              <div class="column">
+                <div class="icon"><i class="fas fa-user-friends"></i></div>
+                <div class="details">
+                  <p>Friends</p>
+                  <span>Your friends on Facebook</span>
+                </div>
+              </div>
+              <div class="radio"></div>
+            </li>
+            <li>
+              <div class="column">
+                <div class="icon"><i class="fas fa-user"></i></div>
+                <div class="details">
+                  <p>Specific</p>
+                  <span>Only show to some friends</span>
+                </div>
+              </div>
+              <div class="radio"></div>
+            </li>
+            <li>
+              <div class="column">
+                <div class="icon"><i class="fas fa-lock"></i></div>
+                <div class="details">
+                  <p>Only me</p>
+                  <span>Only you can see your post</span>
+                </div>
+              </div>
+              <div class="radio"></div>
+            </li>
+            <li>
+              <div class="column">
+                <div class="icon"><i class="fas fa-cog"></i></div>
+                <div class="details">
+                  <p>Custom</p>
+                  <span>Include and exclude friends</span>
+                </div>
+              </div>
+              <div class="radio"></div>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <div>
+      <button class="create-post" onclick="createdown()">Create Post</button>
     </div>
 
-    <div class="welcome">WELCOME! TO WEBSITE</div>
+    <script>
+      const container = document.querySelector(".container"),
+      privacy = container.querySelector(".post .privacy"),
+      arrowBack = container.querySelector(".audience .arrow-back");
+
+      privacy.addEventListener("click", () => {
+        container.classList.add("active");
+      });
+
+      arrowBack.addEventListener("click", () => {
+        container.classList.remove("active");
+      });
+    </script>
     <script src="./home.js"></script>
   </body>
 </html>
