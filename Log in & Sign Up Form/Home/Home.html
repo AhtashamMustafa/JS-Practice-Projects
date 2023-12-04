@@ -253,23 +253,16 @@
         </section>
       </div>
     </div>
+    <div class="create-button" onclick="createdown()"><button class="cbutton">
+      <img class="svg" src="../Assests/pen-to-square-regular.svg" alt="">
+      <span class="create-post">Create Post</span>
+    </button></div>  
+    <div class="post-area">
     <div>
-      <button class="create-post" onclick="createdown()">Create Post</button>
+      img
+    </div>
     </div>
 
-    <script>
-      const container = document.querySelector(".container"),
-      privacy = container.querySelector(".post .privacy"),
-      arrowBack = container.querySelector(".audience .arrow-back");
-
-      privacy.addEventListener("click", () => {
-        container.classList.add("active");
-      });
-
-      arrowBack.addEventListener("click", () => {
-        container.classList.remove("active");
-      });
-    </script>
     <script src="./home.js"></script>
   </body>
 </html>
