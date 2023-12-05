@@ -8,12 +8,14 @@ const notification = document.querySelector("#notification");
 let dropupdate = document.querySelector(".dropdown");
 let drop = document.querySelector(".main-container");
 let username = document.querySelector(".name");
-let postname = document.querySelector("#name");
+let createpostname = document.querySelector("#name");
+let postname =document.querySelector(".username");
 let useremail = document.querySelector("#email");
 let usercontact = document.querySelector("#contact");
 let usercity = document.querySelector("#city");
 let updateimg = document.querySelector("#imagePreview");
 let userimg = document.querySelector(".imagePreview");
+let postinput = document.querySelector('textarea')
 function classonHandler() {
   // secondContainer.classList.add('visible')
   // secondContainer.classList.remove('hidden')
@@ -50,7 +52,7 @@ if (!loggedInUser) window.location.href = "../Login/Login.html";
 loggedin.innerHTML = JSON.parse(
   localStorage.getItem("LoggedInuser")
 )[0].username;
-postname.innerHTML = JSON.parse(
+createpostname.innerHTML = JSON.parse(
   localStorage.getItem("LoggedInuser")
 )[0].username;
 
@@ -97,7 +99,7 @@ image.onchange = function () {
 document.querySelector("#imagePreview").addEventListener("click", function () {
   document.getElementById("profile").click();
 });
-var createPost = document.querySelector(".create-post");
+var createPost = document.querySelector(".create-button");
 var createPostContainer = document.querySelector(".container");
 function createdown() {
   createPostContainer.style.height = "70vh";
@@ -154,3 +156,109 @@ privacy.addEventListener("click", () => {
 arrowBack.addEventListener("click", () => {
   container.classList.remove("active");
 });
+
+function post(){
+  var post = JSON.parse(localStorage.getItem('post'))??[];
+  var currentDate = new Date();
+  var timestamp = currentDate.getTime();
+  post.push({
+    text:postinput.value,
+    details:JSON.parse(localStorage.getItem("LoggedInuser")),
+    time:timestamp
+  })
+
+  localStorage.setItem('post',JSON.stringify(post))
+  postinput.value="";
+  alert("Your post has been posted")
+  createPostContainer.style.height = 0;
+  createPost.setAttribute("onclick", "createdown()");
+  postDisplayHandler()
+}
+let postContentArea = document.querySelector('#postContentArea')
+const postDisplayHandler = () => {
+  postContentArea.innerHTML = ""
+  var post = JSON.parse(localStorage.getItem('post'))??[];
+  post.reverse().forEach(element => {
+    var storedTimestamp = element.time
+    var currentTime = new Date();
+    var timeDifference = currentTime.getTime() - storedTimestamp;
+    
+    var hoursAgo = Math.floor(timeDifference / (1000 * 60 * 60 ));
+    var daysAgo = Math.floor(hoursAgo / 24);
+    var hour;
+    var days;
+    if (hoursAgo >= 24) {
+      if (daysAgo > 1) {
+          days = `${daysAgo} days ago`;
+      } else {
+          days = `${daysAgo} day ago`;
+      }
+  } else {
+      if (hoursAgo > 1) {
+          hour = `${hoursAgo} hours ago`;
+      } else {
+          hour = `${hoursAgo} hour ago`;
+      }
+  }
+      const textHTML = `
+      <div class="card text-center" style="margin-top:2vh;z-index: -1;">
+      <div class="card-header" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;">
+          ${element.details[0].username}
+      </div>
+      <div class="card-body"style="padding: 7vh 2vw;font-size: 1.1em;">
+          <h5 class="card-title">${element.text}</h5>
+      </div>
+      <div class="card-footer text-body-secondary">
+          ${hour??days}
+      </div>
+  </div>
+      `
+
+  postContentArea.innerHTML += textHTML
+  });
+} 
+const myPostDisplayHandler = () => {
+  postContentArea.innerHTML = ""
+  var post = JSON.parse(localStorage.getItem('post'))??[];
+post.reverse().filter((ele) => {ele.details[0].email == JSON.parse(localStorage.getItem('LoggedInuser'))[0].email}).forEach((element)=>{console.log("me aa rha")
+    var storedTimestamp = element.time
+    var currentTime = new Date();
+    var timeDifference = currentTime.getTime() - storedTimestamp;
+    
+    var hoursAgo = Math.floor(timeDifference / (1000 * 60 * 60));
+    var daysAgo = Math.floor(hoursAgo / 24);
+    var hour;
+    var days;
+    if (hoursAgo >= 24) {
+      if (daysAgo > 1) {
+          days = `${daysAgo} days ago`;
+      } else {
+        days = `${daysAgo} day ago`;
+      }
+  } else {
+      if (hoursAgo > 1) {
+        hour = `${hoursAgo} hours ago`;
+      } else {
+        hour = `${hoursAgo} hour ago`;
+  
+      }
+  }
+      const textHTML = `
+      <div class="card text-center" style="margin-top:2vh;z-index: -1;">
+      <div class="card-header" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;">
+          ${element.details[0].username}
+      </div>
+      <div class="card-body"style="padding: 7vh 2vw;font-size: 1.1em;">
+          <h5 class="card-title">${element.text}</h5>
+      </div>
+      <div class="card-footer text-body-secondary">
+      ${hour??days}
+      </div>
+  </div>
+      `
+
+  postContentArea.innerHTML += textHTML
+});
+} 
+var currentTime = new Date();
+postDisplayHandler()
