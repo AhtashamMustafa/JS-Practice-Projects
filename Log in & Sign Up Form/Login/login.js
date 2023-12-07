@@ -16,23 +16,17 @@ function login() {
   }
   if (input[1].value.length < 8) return alert('password length should be atleast 8 characters')
   if (!users) return alert("Sorry no user found")
-  var userfound = false;
-  for (let i = 0; i < users.length; i++) {
-    if (
-      users[i].email == input[0].value &&
-      users[i].password == input[1].value
-    ) {
-      userfound = true;
-      break;
-    }
-  }
-  if (userfound) {
+var find = users.find((el)=>{
+  return el.email == input[0].value &&
+      el.password == input[1].value
+})
+  if (find) {
     alert("Login Successful.")
       // window.location.href = '../Login/loader.html';
     setTimeout(() => {
       window.location.href = '../Home/Home.html'
   }, 2000)
-    localStorage.setItem('LoggedInuser',JSON.stringify(users))
+    localStorage.setItem('LoggedInuser',JSON.stringify(find))
   } else {
     alert("Invalid credentials.Please try again.");
   }
