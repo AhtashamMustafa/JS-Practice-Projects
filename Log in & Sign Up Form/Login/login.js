@@ -1,7 +1,6 @@
 var input = document.querySelectorAll("input");
-var submit = document.querySelector("#loginbtn");
-var cancel = document.querySelector("#cancelbtn");
-var form = document.querySelector("form");
+var form = document.querySelector(".form");
+var loader = document.querySelector(".loader");
 
 const loggedInUser = JSON.parse(localStorage.getItem('LoggedInuser'))
 
@@ -11,24 +10,49 @@ function login() {
   var users = JSON.parse(localStorage.getItem("users")) || [];
 
   if (input[0].value == "" || input[1].value == "") {
-    alert("Please fill all the fields");
+    warningToast("Please fill all the fields");
     return;
   }
-  if (input[1].value.length < 8) return alert('password length should be atleast 8 characters')
-  if (!users) return alert("Sorry no user found")
-var find = users.find((el)=>{
-  return el.email == input[0].value &&
-      el.password == input[1].value
-})
+
+  if (input[1].value.length < 8) return warningToast('password length should be atleast 8 characters')
+
+  if (!users) return warningToast("Sorry no user found")
+
+  var find = users.find((el)=>{
+    return el.email == input[0].value && el.password == input[1].value
+  })
+
   if (find) {
-    alert("Login Successful.")
-      // window.location.href = '../Login/loader.html';
+    successToast("Login Successful.")
+
+    form.style.display='none'
+
+    setInterval(() => {
+      loader.style.display='block'
+    }, 500);
+
     setTimeout(() => {
-      window.location.href = '../Home/Home.html'
-  }, 2000)
-    localStorage.setItem('LoggedInuser',JSON.stringify(find))
+      window.location.href = '../Home/home.html'}, 3000)
+    var obj=[]
+    obj.push(find)
+    localStorage.setItem('LoggedInuser',JSON.stringify(obj))
   } else {
-    alert("Invalid credentials.Please try again.");
+    warningToast("Invalid credentials.Please try again.");
   }
 }
 
+// Toast functions
+function successToast(text) {
+  var success = document.getElementById("success");
+  var successimg = document.getElementById("check");
+  success.innerHTML=`${text}<span ><img id="check" src="../Assests/Check.png" alt=""></span>`
+  success.className = "show";
+  setTimeout(function(){ success.className = success.className.replace("show", "");}, 3000);
+}
+function warningToast(text) {
+  var warning = document.getElementById("warning");
+  var cancelimg = document.getElementById("cancel");
+  warning.innerHTML=`${text}<span ><img id="cancel" src="../Assests/cancel.png" alt=""></span>`
+  warning.className = "show";
+  setTimeout(function(){ warning.className = warning.className.replace("show", "");}, 3000);
+}

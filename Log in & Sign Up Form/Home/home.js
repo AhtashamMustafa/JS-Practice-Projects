@@ -1,13 +1,11 @@
 const firstContainer = document.querySelector("#container1");
-const secondContainer = document.querySelector("#container2");
 const thirdContainer = document.querySelector("#container3");
-const fourthContainer = document.querySelector("#container4");
-const loggedin = document.querySelector("#loggedinuser");
+const profileNameHtml = document.querySelector("#loggedinuser");
 const loggedout = document.querySelector("#logout");
 const notification = document.querySelector("#notification");
 let dropupdate = document.querySelector(".dropdown");
 let drop = document.querySelector(".main-container");
-let username = document.querySelector(".name");
+let userName = document.querySelector(".name");
 let createpostname = document.querySelector("#name");
 let postname = document.querySelector(".username");
 let useremail = document.querySelector("#email");
@@ -16,63 +14,34 @@ let usercity = document.querySelector("#city");
 let updateimg = document.querySelector("#imagePreview");
 let userimg = document.querySelector(".imagePreview");
 let postinput = document.querySelector("textarea");
-function classonHandler() {
-  // secondContainer.classList.add('visible')
-  // secondContainer.classList.remove('hidden')
-  thirdContainer.classList.add("visible");
-  thirdContainer.classList.remove("hidden");
-  fourthContainer.classList.remove("visible");
-  fourthContainer.classList.add("hidden");
-}
-function classoffHandler() {
-  // secondContainer.classList.remove('visible')
-  // secondContainer.classList.add('hidden')
-  thirdContainer.classList.remove("visible");
-  thirdContainer.classList.add("hidden");
-  fourthContainer.classList.add("visible");
-  fourthContainer.classList.remove("hidden");
-}
-function handleResize() {
-  if (window.innerWidth <= 599) {
-    console.log("off");
-    classoffHandler();
-  } else {
-    classonHandler();
-  }
-}
-// console.log(window.innerWidth)
 
-// Add an event listener to handle window resizing
-window.addEventListener("resize", handleResize);
 
 const loggedInUser = JSON.parse(localStorage.getItem("LoggedInuser"));
 
 if (!loggedInUser) window.location.href = "../Login/Login.html";
 // Display the username on the page
-loggedin.innerHTML = JSON.parse(localStorage.getItem("LoggedInuser")).username;
-createpostname.innerHTML = JSON.parse(
-  localStorage.getItem("LoggedInuser")
-).username;
+
 
 function logout() {
   localStorage.removeItem("LoggedInuser");
   window.location.href = "../Login/Login.html";
 }
+var loggedInUserDetails = loggedInUser.pop()
+let {username,email,contactNo,city,id}=loggedInUserDetails
+console.log(username)
+var capitalisedUserName=username.slice(0, 1).toUpperCase()+username.slice(1).toLowerCase();
+userName.value =capitalisedUserName;
+useremail.value = email;
+usercontact.value =contactNo;
+usercity.value = city;
 
-username.value = JSON.parse(localStorage.getItem("LoggedInuser")).username;
-useremail.value = JSON.parse(localStorage.getItem("LoggedInuser")).email;
-usercontact.value = JSON.parse(localStorage.getItem("LoggedInuser")).contactNo;
-usercity.value = JSON.parse(localStorage.getItem("LoggedInuser")).city;
 function update() {
   var users = JSON.parse(localStorage.getItem("users")) ?? [];
-  var loggedInUseremail = JSON.parse(
-    localStorage.getItem("LoggedInuser")
-  ).email;
-  document
-    .querySelector("#imagePreview")
-    .addEventListener("click", function () {
-      document.getElementById("profile").click();
-    });
+
+  document.querySelector("#imagePreview").addEventListener("click", function () {
+  document.getElementById("profile").click();
+  });
+
   var index = -1;
   for (let i = 0; i < users.length; i++) {
     if (users[i].email == useremail.value) {
@@ -91,6 +60,12 @@ function update() {
     setTimeout(dropup(), 2000);
   }
 }
+
+profileNameHtml.textContent = username;
+createpostname.innerHTML = JSON.parse(
+  localStorage.getItem("LoggedInuser")
+).username;
+
 var image = document.getElementById("profile");
 image.onchange = function () {
   var imgurl = URL.createObjectURL(image.files[0]);
@@ -102,8 +77,10 @@ image.onchange = function () {
 document.querySelector("#imagePreview").addEventListener("click", function () {
   document.getElementById("profile").click();
 });
+
 var createPost = document.querySelector(".create-button");
 var createPostContainer = document.querySelector(".container");
+
 function createdown() {
   createPostContainer.style.height = "70vh";
   createPost.setAttribute("onclick", "createup()");
@@ -135,18 +112,18 @@ function notificationhover() {
 
 function setting() {
   drop.style.height = 0;
-  loggedin.setAttribute("onclick", "dropup()");
+  profileNameHtml.setAttribute("onclick", "dropup()");
   dropupdate.style.height = "69vh";
 }
 
 function dropdown() {
   drop.style.height = "31svh";
-  loggedin.setAttribute("onclick", "dropup()");
+  profileNameHtml.setAttribute("onclick", "dropup()");
 }
 function dropup() {
   dropupdate.style.height = 0;
   drop.style.height = 0;
-  loggedin.setAttribute("onclick", "dropdown()");
+  profileNameHtml.setAttribute("onclick", "dropdown()");
 }
 const container = document.querySelector(".container");
 let privacy = container.querySelector(".post .privacy");
@@ -180,7 +157,7 @@ function post() {
 }
 let postContentArea = document.querySelector("#postContentArea");
 const postDisplayHandler = () => {
-  postContentArea.innerHTML = "";
+  // postContentArea.innerHTML = "";
   var post = JSON.parse(localStorage.getItem("post")) ?? [];
   post.reverse().forEach((element) => {
     var storedTimestamp = element.time;
@@ -204,19 +181,20 @@ const postDisplayHandler = () => {
         hour = `${hoursAgo} hour ago`;
       }
     }
+  //   <div class="" style="margin-top:2vh;z-index: -1;">
+  //     <div class="" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;display:flex ;justify-content:center;align-items:center;">
+  //     <button class="" style="cursor: pointer !important;" type="button" onclick="deleteHandler()">Delete</button>
+  //     ${element.username}
+  //     </div>
+  //     <div class=""style="padding: 7vh 2vw;font-size: 1.1em;">
+  //         <h5 class="card-title">${element.text}</h5>
+  //     </div>
+  //     <div class="">
+  //         ${hour ?? days}
+  //     </div>
+  // </div>
     const textHTML = `
-      <div class="card text-center" style="margin-top:2vh;z-index: -1;">
-      <div class="card-header" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;display:flex ;justify-content:center;align-items:center;">
-      <button class="btn btn-primary" style="cursor: pointer !important;" type="button" onclick="deleteHandler()">Delete</button>
-      ${element.username}
-      </div>
-      <div class="card-body"style="padding: 7vh 2vw;font-size: 1.1em;">
-          <h5 class="card-title">${element.text}</h5>
-      </div>
-      <div class="card-footer text-body-secondary">
-          ${hour ?? days}
-      </div>
-  </div>
+      
       `;
 
     postContentArea.innerHTML += textHTML;

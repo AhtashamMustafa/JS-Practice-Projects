@@ -13,20 +13,24 @@
         <div class="container">
             <h1>Log In</h1>
             <br>
-        <div class="container">
-            <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="email" required>
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="email" required>
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
 
-            <button id="loginbtn" onclick="login()" type="submit">Login</button>
-        </div>
-        <div class="">
+                <button id="loginbtn" onclick="login()" type="submit">Login</button>
+            </div>
+            <div class="">
             <span class="psw"><a style="text-decoration: none; color: black;" href="#">Forgot Password?</a></span>
             <span class="signup">Don't have an account?<a id="signup" style="text-decoration: none;" href="../Signup/Signup.html"> Signup here</a></span>
+            </div>
         </div>
     </div>
+    <div class="loader"></div>
+    <div id="success"><span ><img id="check" src="../Assests/Check.png" alt=""></span></div>
+  <div id="warning"><img id="cancel" src="../Assests/cancel.png" alt=""></div>
     <script src="login.js"></script>
 </body>
 
