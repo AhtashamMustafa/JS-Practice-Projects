@@ -1,7 +1,7 @@
-var input = document.querySelectorAll("input");
-var submitButton = document.querySelector(".signupbtn");
-var form = document.querySelector(".form");
-var loader = document.querySelector(".loader");
+let input = document.querySelectorAll("input");
+let submitButton = document.querySelector(".signupbtn");
+let form = document.querySelector(".form");
+let loader = document.querySelector(".loader");
 
 const loggedInUser = JSON.parse(localStorage.getItem('LoggedInuser'))
 
@@ -19,10 +19,10 @@ function signup() {
     return;
 
   } else {
-    var userNameCheck=false;
-    var userEmailCheck=false;
+    let userNameCheck=false;
+    let userEmailCheck=false;
 
-    var users = JSON.parse(localStorage.getItem("users")) || [];
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
     let userName=users.find((user)=>{
        if(user.username == input[0].value.toLowerCase()){
@@ -54,7 +54,7 @@ function signup() {
     } else {
       
       let userObj={
-      id:Date.now(),
+      UserId:Date.now(),
       username: input[0].value.toLowerCase(),
       email: input[1].value,
       password: input[2].value,
@@ -81,15 +81,15 @@ function signup() {
   }
 }
 function successToast(text) {
-  var success = document.getElementById("success");
-  var successimg = document.getElementById("check");
+  let success = document.getElementById("success");
+  let successimg = document.getElementById("check");
   success.innerHTML=`${text}<span ><img id="check" src="../Assests/Check.png" alt=""></span>`
   success.className = "show";
   setTimeout(function(){ success.className = success.className.replace("show", "");}, 3000);
 }
 function warningToast(text) {
-  var warning = document.getElementById("warning");
-  var cancelimg = document.getElementById("cancel");
+  let warning = document.getElementById("warning");
+  let cancelimg = document.getElementById("cancel");
   warning.innerHTML=`${text}<span ><img id="cancel" src="../Assests/cancel.png" alt=""></span>`
   warning.className = "show";
   setTimeout(function(){ warning.className = warning.className.replace("show", "");}, 3000);

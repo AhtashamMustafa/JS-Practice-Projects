@@ -1,13 +1,13 @@
-var input = document.querySelectorAll("input");
-var form = document.querySelector(".form");
-var loader = document.querySelector(".loader");
+let input = document.querySelectorAll("input");
+let form = document.querySelector(".form");
+let loader = document.querySelector(".loader");
 
-const loggedInUser = JSON.parse(localStorage.getItem('LoggedInuser'))
+let loggedInUser = JSON.parse(localStorage.getItem('LoggedInuser'))
 
 if(loggedInUser) window.location.href = '../Home/Home.html'
 
 function login() {
-  var users = JSON.parse(localStorage.getItem("users")) || [];
+  let users = JSON.parse(localStorage.getItem("users")) || [];
 
   if (input[0].value == "" || input[1].value == "") {
     warningToast("Please fill all the fields");
@@ -18,7 +18,7 @@ function login() {
 
   if (!users) return warningToast("Sorry no user found")
 
-  var find = users.find((el)=>{
+  let find = users.find((el)=>{
     return el.email == input[0].value && el.password == input[1].value
   })
 
@@ -33,7 +33,7 @@ function login() {
 
     setTimeout(() => {
       window.location.href = '../Home/home.html'}, 3000)
-    var obj=[]
+    let obj=[]
     obj.push(find)
     localStorage.setItem('LoggedInuser',JSON.stringify(obj))
   } else {
@@ -43,15 +43,15 @@ function login() {
 
 // Toast functions
 function successToast(text) {
-  var success = document.getElementById("success");
-  var successimg = document.getElementById("check");
+  let success = document.getElementById("success");
+  let successimg = document.getElementById("check");
   success.innerHTML=`${text}<span ><img id="check" src="../Assests/Check.png" alt=""></span>`
   success.className = "show";
   setTimeout(function(){ success.className = success.className.replace("show", "");}, 3000);
 }
 function warningToast(text) {
-  var warning = document.getElementById("warning");
-  var cancelimg = document.getElementById("cancel");
+  let warning = document.getElementById("warning");
+  let cancelimg = document.getElementById("cancel");
   warning.innerHTML=`${text}<span ><img id="cancel" src="../Assests/cancel.png" alt=""></span>`
   warning.className = "show";
   setTimeout(function(){ warning.className = warning.className.replace("show", "");}, 3000);
