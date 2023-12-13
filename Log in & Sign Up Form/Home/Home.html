@@ -6,7 +6,7 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="home.css" />
-      <body>
+<body>
     <!-- <div class="overlay"></div> -->
     <div id="navbar">
       <div id="container1" class="flex margin welcomeMessage gradient-text">
@@ -102,13 +102,13 @@
     </div>
     <!-- dropdown -->
     <div class="main-container">
-      <div class="home"><button class="button">
+      <div class="home"><button class="button" onclick="postDisplayHandler()">
         <img class="svg-icon" src="../Assests/house-solid.svg" alt="">
         <span class="lable">Home</span>
       </button></div>
-      <div class="my-profile" ><button class="button"onclick="">
+      <div class="my-profile" ><button class="button"onclick="myPostDisplayHandler()">
         <img class="svg-icon" src="../Assests/circle-user-solid.svg" alt="">
-        <span class="lable">My Profile</span>
+        <span class="lable">My Posts</span>
       </button></div>
       <div class="setting" onclick="profileUpdatedrop()"><button class="button">
         <img class="svg-icon" src="../Assests/gear-solid.svg" alt="">
@@ -120,7 +120,7 @@
     <div class="container">
       <div class="wrapper">
         <section class="post">
-          <header>Create Post</header>
+          <header id="header-createpost">Create Post</header>
           <form action="#">
             <div class="content">
               <img class="post-img" src="../Assests/default profile.png" alt="logo">
@@ -148,7 +148,7 @@
                 <li><img src="../Assests/more.svg" alt="more"></li>
               </ul>
             </div>
-            <button onclick="post()">Post</button>
+            <button id="post-button" onclick="post()">Post</button>
           </form>
         </section>
         <section class="audience">
@@ -219,22 +219,22 @@
       <img class="svg" src="../Assests/pen-to-square-regular.svg" alt="">
       <span class="create-post">Create Post</span>
     </button></div>  
-    <div id="post-area">
-      <!-- <div id=${element.postId} class="postContentArea" style="width: 100%; margin: auto; height: 100% ;z-index: -1;">
-        <div class="postCard" style="margin-top:2vh; z-index: -1;border: 3px solid rgba(124, 119, 119, 0.416);border-radius: 7px;">
-          <div class="" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;display:flex ;justify-content:flex-start;align-items:center;">
-            <div style="width: 100%;display:flex ;justify-content:space-between;align-items:center;"><div style="width: 100%;display: flex;justify-content:flex-start;align-items:center;"><img style="width: 10%;height: 10%;" src="../Assests/default profile.png" alt=""><div style="margin-left: 1vw; margin-top: 2vh;"><span>${element.username}sufiyan</span><p style="margin-top: -1vh; font-size: 0.8em;">${hour ?? days}</p></div></div><img id="elipsis" style="margin-top: -7vh;" src="../Assests/ellipsis-solid.svg" alt="" onclick="selectEditDeleteDisplayHandler ()"></div>
+      <div id="post-area" style="height: 100vh;">
+        <!-- <div id='${element.postId}' class="postContentArea" style="width: 100%; margin: auto; height: auto ;z-index: -1;">
+          <div class="postCard" style="margin-top:2vh; z-index: -1;border: 3px solid rgba(124, 119, 119, 0.416);border-radius: 7px;">
+            <div class="" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;display:flex ;justify-content:flex-start;align-items:center;width: 100%;">
+              <div style="width: 100%;display:flex ;justify-content:space-between;align-items:center;"><div style="width: 100%;display: flex;justify-content:flex-start;align-items:center;"><img style="width: 7%;height: 7%;" src="../Assests/default profile.png" alt=""><div style="margin-left: 1vw; margin-top: 1vh;"><span>${element.username}</span><p style="margin-top: -1vh; font-size: 0.8em;">${hour ?? days}</p></div></div>
+                <button id="edit" style="background-color:transparent; color: black; padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;border-style: none;float: none !important;"onclick="editHandler()"><img src="../Assests/pen-solid.svg" alt="">Edit</button><button  id="delete" style="background-color:transparent ; color: black;padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;float: none !important;"onclick="deleteHandler()"><img src="../Assests/trash-can-regular.svg" alt="">Delete</button>
+              </div>
+            </div>
+            <div class=""style="font-size: 1.1em;margin: 1vh 1vw;padding:1vh 1vw;text-align:justify">
+              <p>${element.postText}</p>
+            </div>
           </div>
-          <div id="editDelete" class="editDelete"style="background-color:rgb(249, 243, 243);width: 6.5vw;display:none ;justify-content:flex-start;align-items:center;flex-direction: column; position: absolute; right: 21vw;top: 21vh;"><button id="edit" style="background-color:transparent; color: black; padding: 1vh 2.2vw;margin: 0 !important;border-style:none !important;border-radius:0 !important;border-style: none;float: none !important;"onclick="editHandler()">Edit</button><button  id="delete" style="background-color:transparent ; color: black;padding: 1vh 1.5vw;margin: 0 !important;border-style:none !important;border-radius:0 !important;float: none !important;"onclick="deleteHandler()"></button>Delete</button></div>
-          <div class=""style="font-size: 1.1em;margin: 1vh 1vw;padding:1vh 1vw;text-align:justify">
-            <p>${element.postText}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut corrupti quis maiores eum voluptatibus voluptatem, quos optio eius. Facere sit delectus, nulla veniam fugiat quasi obcaecati eveniet consequuntur eius maiores?</p>
-          </div>
-        </div>
-      </div> -->
-    </div>
-    </div>
-  <div id="success"><span ><img id="check" src="../Assests/Check.png" alt=""></span></div>
-  <!-- <div id="warning"><img id="cancel" src="../Assests/cancel.png" alt=""></div> -->
+        </div> -->
+      </div>
+    <div id="success"><span ><img id="check" src="../Assests/Check.png" alt=""></span></div>
+    <div id="warning"><img id="cancel" src="../Assests/cancel.png" alt=""></div>
     <script src="./home.js"></script>
   </body>
 </html>

@@ -13,7 +13,7 @@ let usercontact = document.querySelector("#contact");
 let usercity = document.querySelector("#city");
 let updateimg = document.querySelector("#imagePreview");
 let userimg = document.querySelector(".imagePreview");
-let postinput = document.querySelector("#textArea").value;
+let postinput = document.querySelector("#textArea");
 let createPost = document.querySelector(".create-button");
 let createPostContainer = document.querySelector(".container");
 let image = document.getElementById("profile");
@@ -21,11 +21,14 @@ let container = document.querySelector(".container");
 let privacy = container.querySelector(".post .privacy");
 let arrowBack = container.querySelector(".audience .arrow-back");
 let postArea = document.querySelector("#post-area");
-let elipsis = document.querySelector("#elipsis");
-let select = document.querySelector("#editDelete")
+let postButton=document.querySelector('#post-button')
+
+
 let edit = document.querySelector("#edit")
 let delet = document.querySelector("#delete")
-let imgUrl;
+let imageUrl;
+let oldPost;
+let oldPostIndex;
 
 // Getting data from localstorage
 
@@ -184,8 +187,8 @@ arrowBack.addEventListener("click", () => {
 });
 
 // Getting image url if any
-const imagePrompt = ()=>{
-   let imgUrl=prompt("Enter image URL");
+let imagePrompt = ()=>{
+  imageUrl=prompt("Enter image URL");
 };
 
 // Creating post function
@@ -204,11 +207,11 @@ function post() {
     postId: Date.now() ,
     username: username,
     email: email,
-    postText: postinput,
+    postText: postinput.value,
     time: timestamp,
-    imageUrl:imgUrl
+    imageUrl:imageUrl,
   }
-  console.log
+  
   // pushing data in array
   post.push(postObj)
 
@@ -226,7 +229,7 @@ function post() {
   postDisplayHandler();
 
   // Clearing the text input
-  setTimeout(()=> postinput = "",2000);
+  setTimeout(()=> postinput = "",1000);
 }
 
 // Displaying post
@@ -265,49 +268,68 @@ const postDisplayHandler = () => {
         hour = `${hoursAgo} hour ago`;
       }
     }
+    let textHTML;
+    if(element.imageUrl){
+      textHTML = `<div id='${element.postId}' class="postContentArea" style="width: 100%; margin: auto; height: auto ;z-index: -1;">
+          <div class="postCard" style="margin-top:2vh; z-index: -1;border: 3px solid rgba(124, 119, 119, 0.416);border-radius: 7px;">
+          <div class="" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;display:flex ;justify-content:flex-start;align-items:center;width: 100%;">
+            <div style="width: 100%;display:flex ;justify-content:space-between;align-items:center;"><div style="width: 100%;display: flex;justify-content:flex-start;align-items:center;"><img style="width: 7%;height: 7%;" src="../Assests/default profile.png" alt=""><div style="margin-left: 1vw; margin-top: 1vh;"><span>${capitalizeEveryFirstWord(element.username)}</span><p style="margin-top: -1vh; font-size: 0.8em;">${hour ?? days}</p></div></div>
+            ${ email===element.email ? `<button id="edit" style="background-color:transparent; color: black; padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;border-style: none;float: none !important;"onclick="editPostHandler(${element.postId})"><img src="../Assests/pen-solid.svg" alt="">Edit</button><button  id="delete" style="background-color:transparent ; color: black;padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;float: none !important;"onclick="deletePostHandler(${element.postId})"><img src="../Assests/trash-can-regular.svg" alt="">Delete</button>`:" "}
+            </div>
+          </div>
+          <div class=""style="font-size: 1.1em;margin: 1vh 1vw;padding:1vh 1vw;text-align:justify;">
+            <p>${element.postText}</p><img style="width:100%;height:auto;margin:auto;" src="${element.imageUrl}".svg" alt="">
+          </div>
+        </div>
+      </div>`}
+    else{ textHTML = `<div id='${element.postId}' class="postContentArea" style="width: 100%; margin: auto; height: auto ;z-index: -1;">
+          <div class="postCard" style="margin-top:2vh; z-index: -1;border: 3px solid rgba(124, 119, 119, 0.416);border-radius: 7px;">
+          <div class="" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;display:flex ;justify-content:flex-start;align-items:center;width: 100%;">
+            <div style="width: 100%;display:flex ;justify-content:space-between;align-items:center;"><div style="width: 100%;display: flex;justify-content:flex-start;align-items:center;"><img style="width: 7%;height: 7%;" src="../Assests/default profile.png" alt=""><div style="margin-left: 1vw; margin-top: 1vh;"><span>${capitalizeEveryFirstWord(element.username)}</span><p style="margin-top: -1vh; font-size: 0.8em;">${hour ?? days}</p></div></div>
+            ${ email===element.email ? `<button id="edit" style="background-color:transparent; color: black; padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;border-style: none;float: none !important;"onclick="editPostHandler(${element.postId})"><img src="../Assests/pen-solid.svg" alt="">Edit</button><button  id="delete" style="background-color:transparent ; color: black;padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;float: none !important;"onclick="deletePostHandler(${element.postId})"><img src="../Assests/trash-can-regular.svg" alt="">Delete</button>`:" "}</div>
+          </div>
+          <div class=""style="font-size: 1.1em;margin: 1vh 1vw;padding:1vh 1vw;text-align:justify">
+            <p>${element.postText}</p>
+          </div>
+        </div>
+      </div>`}
     
-    let textHTML = `<div id='${element.postId}' class="postContentArea" style="width: 100%; margin: auto; height: 100% ;z-index: -1;">
-    <div class="postCard" style="margin-top:2vh; z-index: -1;border: 3px solid rgba(124, 119, 119, 0.416);border-radius: 7px;">
-      <div class="" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;display:flex ;justify-content:flex-start;align-items:center;">
-        <div style="width: 100%;display:flex ;justify-content:space-between;align-items:center;"><div style="width: 100%;display: flex;justify-content:flex-start;align-items:center;"><img style="width: 10%;height: 10%;" src="../Assests/default profile.png" alt=""><div style="margin-left: 1vw; margin-top: 2vh;"><span>${element.username}</span><p style="margin-top: -1vh; font-size: 0.8em;">${hour ?? days}</p></div></div><img id="elipsis" style="margin-top: -7vh;" src="../Assests/ellipsis-solid.svg" alt="" onclick="selectEditDeleteDisplayHandler ()"></div>
-      </div>
-      <div id="editDelete" class="editDelete"style="background-color:rgb(249, 243, 243);width: 6.5vw;display:none ;justify-content:flex-start;align-items:center;flex-direction: column; position: absolute; right: 21vw;top: 21vh;"><button id="edit" style="background-color:transparent; color: black; padding: 1vh 2.2vw;margin: 0 !important;border-style:none !important;border-radius:0 !important;border-style: none;float: none !important;"onclick="editHandler()">Edit</button><button  id="delete" style="background-color:transparent ; color: black;padding: 1vh 1.5vw;margin: 0 !important;border-style:none !important;border-radius:0 !important;float: none !important;"onclick="deleteHandler()"></button>Delete</button></div>
-      <div class=""style="font-size: 1.1em;margin: 1vh 1vw;padding:1vh 1vw;text-align:justify">
-        <p>${element.postText}</p>
-      </div>
-    </div>
-  </div>`
-    
-
     postArea.innerHTML += textHTML;
   });
+  dropup()
 };
 
 
 
 const myPostDisplayHandler = () => {
-  postContentArea.innerHTML = "";
-  let logginEmail = JSON.parse(localStorage.getItem("LoggedInuser")).email;
 
-  // console.log(logginEmail);
+  // Clearing data from post content area
+  postArea.innerHTML = "";
+  
+  
+  // Getting data from localstorage
   let post = JSON.parse(localStorage.getItem("post")) || [];
-
-  // let filter= post.reverse().filter((ele) => {ele.details[0].email == logginEmail})
-
+  
+  
+  // filtering the post and display them in content area
   let filter = post.filter((filteredpost) => {
-    return filteredpost.email == logginEmail;
+    return filteredpost.email == email;
   });
-  console.log(filter);
-  filter.forEach((element) => {
-    console.log("me aa rha");
+  
+  filter.reverse().forEach((element) => {
+    
+    // Getting stored time of each post
     let storedTimestamp = element.time;
+
+    // Getting current date and calculate the time difference
     let currentTime = new Date();
     let timeDifference = currentTime.getTime() - storedTimestamp;
-
     let hoursAgo = Math.floor(timeDifference / (1000 * 60 * 60));
     let daysAgo = Math.floor(hoursAgo / 24);
     let hour;
     let days;
+
+    // applying the conditional rendering to get the time of post
     if (hoursAgo >= 24) {
       if (daysAgo > 1) {
         days = `${daysAgo} days ago`;
@@ -321,58 +343,93 @@ const myPostDisplayHandler = () => {
         hour = `${hoursAgo} hour ago`;
       }
     }
-    const textHTML = `
-      <div class="card text-center" style="margin-top:2vh;z-index: -1;">
-      <div class="card-header button" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;">
-      <div class="home" style="position: absolute;right: 0;cursor:pointer;top: 0;display:flex !important;justify-content: center !important;width:8vw;align-items: center !important;margin-left:0"><button class="button">
-      <img style="margin-left:3vw;" class="svg-icon" src="../Assests/pen-solid.svg" alt="">
-      <span class="lable">Edit</span>
-    </button></div>
-    <div class="my-profile"style="position:absolute;cursor:pointer;display:flex !important;justify-content: center !important;align-items: center !important;top: 0;left: 0;"><button class="button"onclick="myPostDisplayHandler()">
-      <img class="svg-icon" src="../Assests/trash-can-regular.svg" alt="">
-      <span class="lable">Delete</span>
-    </button></div>
-      ${element.username}
-      </div>
-      <div class="card-body"style="padding: 7vh 2vw;font-size: 1.1em;">
-          <h5 class="card-title">${element.text}</h5>
-      </div>
-      <div class="card-footer text-body-secondary">
-      ${hour ?? days}
-      </div>
-  </div>
-      `;
-
-    postContentArea.innerHTML += textHTML;
+    let textHTML;
+    if(element.imageUrl){
+      textHTML = `<div id='${element.postId}' class="postContentArea" style="width: 100%; margin: auto; height: auto ;z-index: -1;">
+          <div class="postCard" style="margin-top:2vh; z-index: -1;border: 3px solid rgba(124, 119, 119, 0.416);border-radius: 7px;">
+          <div class="" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;display:flex ;justify-content:flex-start;align-items:center;width: 100%;">
+            <div style="width: 100%;display:flex ;justify-content:space-between;align-items:center;"><div style="width: 100%;display: flex;justify-content:flex-start;align-items:center;"><img style="width: 7%;height: 7%;" src="../Assests/default profile.png" alt=""><div style="margin-left: 1vw; margin-top: 1vh;"><span>${capitalizeEveryFirstWord(element.username)}</span><p style="margin-top: -1vh; font-size: 0.8em;">${hour ?? days}</p></div></div>
+            ${ email===element.email ? `<button id="edit" style="background-color:transparent; color: black; padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;border-style: none;float: none !important;"onclick="editPostHandler(${element.postId})"><img src="../Assests/pen-solid.svg" alt="">Edit</button><button  id="delete" style="background-color:transparent ; color: black;padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;float: none !important;"onclick="deletePostHandler(${element.postId})"><img src="../Assests/trash-can-regular.svg" alt="">Delete</button>`:" "}
+            </div>
+          </div>
+          <div class=""style="font-size: 1.1em;margin: 1vh 1vw;padding:1vh 1vw;text-align:justify;">
+            <p>${element.postText}</p><img style="width:100%;height:auto;margin:auto;" src="${element.imageUrl}".svg" alt="">
+          </div>
+        </div>
+      </div>`}
+    else{ textHTML = `<div id='${element.postId}' class="postContentArea" style="width: 100%; margin: auto; height: auto ;z-index: -1;">
+          <div class="postCard" style="margin-top:2vh; z-index: -1;border: 3px solid rgba(124, 119, 119, 0.416);border-radius: 7px;">
+          <div class="" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;display:flex ;justify-content:flex-start;align-items:center;width: 100%;">
+            <div style="width: 100%;display:flex ;justify-content:space-between;align-items:center;"><div style="width: 100%;display: flex;justify-content:flex-start;align-items:center;"><img style="width: 7%;height: 7%;" src="../Assests/default profile.png" alt=""><div style="margin-left: 1vw; margin-top: 1vh;"><span>${capitalizeEveryFirstWord(element.username)}</span><p style="margin-top: -1vh; font-size: 0.8em;">${hour ?? days}</p></div></div>
+            ${ email===element.email ? `<button id="edit" style="background-color:transparent; color: black; padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;border-style: none;float: none !important;"onclick="editPostHandler(${element.postId})"><img src="../Assests/pen-solid.svg" alt="">Edit</button><button  id="delete" style="background-color:transparent ; color: black;padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;float: none !important;"onclick="deletePostHandler(${element.postId})"><img src="../Assests/trash-can-regular.svg" alt="">Delete</button>`:" "}</div>
+          </div>
+          <div class=""style="font-size: 1.1em;margin: 1vh 1vw;padding:1vh 1vw;text-align:justify">
+            <p>${element.postText}</p>
+          </div>
+        </div>
+      </div>`}
+    
+    postArea.innerHTML += textHTML;
   });
+  dropup()
 };
 
 
 
 postDisplayHandler();
 
-
+// Drop down handler of edit and delete
 function selectEditDeleteDisplayHandler(){
-  select.classList.add("active");
-  elipsis.setAttribute("onclick","selectEditDeletecloseHandler()");
+  let select = document.querySelector("#editDelete").classList.add("active");
+  let elipsis = document.querySelector("#elipsis").setAttribute("onclick","selectEditDeletecloseHandler()");
 }
+
+// Drop up handler of edit and delete
 function selectEditDeletecloseHandler(){
-  select.classList.remove("active")
-  elipsis.setAttribute("onclick","selectEditDeleteDisplayHandler()")
+  let select = document.querySelector("#editDelete").classList.remove("active");
+  let elipsis = document.querySelector("#elipsis").setAttribute("onclick","selectEditDeleteDisplayHandler()")
 }
 
+// Delete post Handler
+function deletePostHandler(postId) {
+  
+    // get Data from local storage
+    const forDelete = JSON.parse(localStorage.getItem('post'))
 
+    // filter the data of post which emails do not matched
+    const filteredData = forDelete.filter((post) => post.postId != postId)
 
+    // Setting the data in local storage
+    localStorage.setItem('post', JSON.stringify(filteredData))
 
+    // Running the display Handler
+    postDisplayHandler()
+}
+function editPostHandler(postId) {
+  console.log("chal rha ho edit");
+  const postsLocalStorage = JSON.parse(localStorage.getItem('post'))
 
+  const findPost = postsLocalStorage.find((post) => post.postId === postId)
+  const findPostIndex = postsLocalStorage.findIndex((post) => post.postId === postId)
 
+  console.log(findPost, "====>>> findPost")
 
+  oldPost = findPost;
+  oldPostIndex = findPostIndex;
 
+  postinput.value = findPost.postText
 
+  postButton.innerHTML = "Update"
+  document.getElementById("header-createpost").innerHTML = "Update Post"
+  
+  postButton.setAttribute("onclick","updatePostHandler()")
+  createdown()
+}
 
-
-function deleteHandler() {
-  console.log("chal rha ho delet");
+function updatePostHandler(){
+  console.log("update post handler working")
+  let postObj
+    console.log(postinput.value, "===>>>postInput")
 }
 
 function successToast(text) {
@@ -382,6 +439,7 @@ function successToast(text) {
   success.className = "show";
   setTimeout(function(){ success.className = success.className.replace("show", "");}, 3000);
 }
+
 function warningToast(text) {
   let warning = document.getElementById("warning");
   let cancelimg = document.getElementById("cancel");
