@@ -32,8 +32,11 @@ body {
   color: black;
   font-size: 1rem;
   font-weight: 501;
-  height: 9vh;
+  /* height: 9vh; */
   background-color:rgb(249, 243, 243);
+  position: fixed;
+  width: 100vw;
+  top: 0;
 }
 .none {
   display: flex;
@@ -116,6 +119,7 @@ body {
   transition: 0.5s all;
   overflow: hidden;
   z-index: 1;
+  top: 12vh;
 }
 @keyframes rotateZ {
   0% {
@@ -207,6 +211,7 @@ label {
   transition: 0.5s all;
   overflow: hidden;
   padding: 0 2vw;
+  top: 12vh;
 }
 .button {
   display: flex;
@@ -561,17 +566,18 @@ form textarea:valid ~ button:hover{
   position: absolute;
   margin-left: 3VW !important;
   margin-top: 2vh !important;
+  z-index: -1;
 
 }
 #post-area{
-  width: 65%;
+  width: 45%;
   margin: auto;
   border-left: 2px solid rgb(224, 222, 222);
   border-right: 2px solid rgb(224, 222, 222);
   border-radius: 5px;
   padding: 4vh 3vw;
-  height: 100vh;
-  margin-top: 1vh;
+  height: auto;
+  margin-top: 12vh;
   background-color: white;
 }
 #success {

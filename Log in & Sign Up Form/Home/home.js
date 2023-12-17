@@ -249,31 +249,29 @@ const postDisplayHandler = () => {
     // Getting current date and calculate the time difference
     let currentTime = new Date();
     let timeDifference = currentTime.getTime() - storedTimestamp;
-    let hoursAgo = Math.floor(timeDifference / (1000 * 60 * 60));
+    let secondsAgo = Math.floor(timeDifference / 1000);
+    let minutesAgo = Math.floor(secondsAgo / 60);
+    let hoursAgo = Math.floor(minutesAgo / 60);
     let daysAgo = Math.floor(hoursAgo / 24);
-    let hour;
-    let days;
+
+    let timeAgo;
 
     // applying the conditional rendering to get the time of post
-    if (hoursAgo >= 24) {
-      if (daysAgo > 1) {
-        days = `${daysAgo} days ago`;
-      } else {
-        days = `${daysAgo} day ago`;
-      }
+    if (daysAgo >= 1) {
+      timeAgo = daysAgo > 1 ? `${daysAgo} days ago` : `${daysAgo} day ago`;
+    } else if (hoursAgo >= 1) {
+      timeAgo = hoursAgo > 1 ? `${hoursAgo} hours ago` : `${hoursAgo} hour ago`;
+    } else if (minutesAgo >= 1) {
+      timeAgo = minutesAgo > 1 ? `${minutesAgo} minutes ago` : `${minutesAgo} minute ago`;
     } else {
-      if (hoursAgo > 1) {
-        hour = `${hoursAgo} hours ago`;
-      } else {
-        hour = `${hoursAgo} hour ago`;
-      }
+      timeAgo = secondsAgo > 1 ? `${secondsAgo} seconds ago` : `${secondsAgo} second ago`;
     }
     let textHTML;
     if(element.imageUrl){
       textHTML = `<div id='${element.postId}' class="postContentArea" style="width: 100%; margin: auto; height: auto ;z-index: -1;">
           <div class="postCard" style="margin-top:2vh; z-index: -1;border: 3px solid rgba(124, 119, 119, 0.416);border-radius: 7px;">
           <div class="" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;display:flex ;justify-content:flex-start;align-items:center;width: 100%;">
-            <div style="width: 100%;display:flex ;justify-content:space-between;align-items:center;"><div style="width: 100%;display: flex;justify-content:flex-start;align-items:center;"><img style="width: 7%;height: 7%;" src="../Assests/default profile.png" alt=""><div style="margin-left: 1vw; margin-top: 1vh;"><span>${capitalizeEveryFirstWord(element.username)}</span><p style="margin-top: -1vh; font-size: 0.8em;">${hour ?? days}</p></div></div>
+            <div style="width: 100%;display:flex ;justify-content:space-between;align-items:center;"><div style="width: 100%;display: flex;justify-content:flex-start;align-items:center;"><img style="width: 7%;height: 7%;" src="../Assests/default profile.png" alt=""><div style="margin-left: 1vw; margin-top: 1vh;"><span>${capitalizeEveryFirstWord(element.username)}</span><p style="margin-top: -1vh; font-size: 0.8em;">${timeAgo}</p></div></div>
             ${ email===element.email ? `<button id="edit" style="background-color:transparent; color: black; padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;border-style: none;float: none !important;"onclick="editPostHandler(${element.postId})"><img src="../Assests/pen-solid.svg" alt="">Edit</button><button  id="delete" style="background-color:transparent ; color: black;padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;float: none !important;"onclick="deletePostHandler(${element.postId})"><img src="../Assests/trash-can-regular.svg" alt="">Delete</button>`:" "}
             </div>
           </div>
@@ -285,7 +283,7 @@ const postDisplayHandler = () => {
     else{ textHTML = `<div id='${element.postId}' class="postContentArea" style="width: 100%; margin: auto; height: auto ;z-index: -1;">
           <div class="postCard" style="margin-top:2vh; z-index: -1;border: 3px solid rgba(124, 119, 119, 0.416);border-radius: 7px;">
           <div class="" id="username" style="padding: 1vh 1vw; font-size: 1.2em;font-weight: 600;display:flex ;justify-content:flex-start;align-items:center;width: 100%;">
-            <div style="width: 100%;display:flex ;justify-content:space-between;align-items:center;"><div style="width: 100%;display: flex;justify-content:flex-start;align-items:center;"><img style="width: 7%;height: 7%;" src="../Assests/default profile.png" alt=""><div style="margin-left: 1vw; margin-top: 1vh;"><span>${capitalizeEveryFirstWord(element.username)}</span><p style="margin-top: -1vh; font-size: 0.8em;">${hour ?? days}</p></div></div>
+            <div style="width: 100%;display:flex ;justify-content:space-between;align-items:center;"><div style="width: 100%;display: flex;justify-content:flex-start;align-items:center;"><img style="width: 7%;height: 7%;" src="../Assests/default profile.png" alt=""><div style="margin-left: 1vw; margin-top: 1vh;"><span>${capitalizeEveryFirstWord(element.username)}</span><p style="margin-top: -1vh; font-size: 0.8em;">${timeAgo}</p></div></div>
             ${ email===element.email ? `<button id="edit" style="background-color:transparent; color: black; padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;border-style: none;float: none !important;"onclick="editPostHandler(${element.postId})"><img src="../Assests/pen-solid.svg" alt="">Edit</button><button  id="delete" style="background-color:transparent ; color: black;padding: 0vh 1vw;margin: 0 !important;border-style:none !important;border-radius:8px !important;float: none !important;"onclick="deletePostHandler(${element.postId})"><img src="../Assests/trash-can-regular.svg" alt="">Delete</button>`:" "}</div>
           </div>
           <div class=""style="font-size: 1.1em;margin: 1vh 1vw;padding:1vh 1vw;text-align:justify">
@@ -375,7 +373,6 @@ const myPostDisplayHandler = () => {
 };
 
 
-
 postDisplayHandler();
 
 // Drop down handler of edit and delete
@@ -428,8 +425,29 @@ function editPostHandler(postId) {
 
 function updatePostHandler(){
   console.log("update post handler working")
-  let postObj
-    console.log(postinput.value, "===>>>postInput")
+
+  let newUpdatePostData ={
+    postId:oldPost?.id,
+    postText: postinput.value || oldPost.postText,
+    imageUrl:imageUrl || oldPost.imageUrl,
+    username: username,
+    email: email,
+    time: Date.now()
+  }  
+  
+  const postsLocalStorage = JSON.parse(localStorage.getItem('post'))
+
+  postsLocalStorage.splice(oldPostIndex, 1, newUpdatePostData)
+
+  localStorage.setItem('post', JSON.stringify(postsLocalStorage))
+
+  postDisplayHandler()
+  postButton.innerHTML = "Post"
+
+  postButton.setAttribute("onclick","post()")
+  createup()
+
+  document.getElementById("header-createpost").innerHTML = "Create Post"
 }
 
 function successToast(text) {
