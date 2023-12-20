@@ -124,6 +124,8 @@ document.querySelector("#imagePreview").addEventListener("click", function () {
 
 // Create post down transition
 function createdown() {
+  document.getElementById("header-createpost").innerHTML = "Create Post";
+  
   createPostContainer.style.height = "70vh";
   createPost.setAttribute("onclick", "createup()");
 }
@@ -403,13 +405,11 @@ function deletePostHandler(postId) {
     postDisplayHandler()
 }
 function editPostHandler(postId) {
-  console.log("chal rha ho edit");
+
   const postsLocalStorage = JSON.parse(localStorage.getItem('post'))
 
   const findPost = postsLocalStorage.find((post) => post.postId === postId)
   const findPostIndex = postsLocalStorage.findIndex((post) => post.postId === postId)
-
-  console.log(findPost, "====>>> findPost")
 
   oldPost = findPost;
   oldPostIndex = findPostIndex;
@@ -424,7 +424,6 @@ function editPostHandler(postId) {
 }
 
 function updatePostHandler(){
-  console.log("update post handler working")
 
   let newUpdatePostData ={
     postId:oldPost?.id,
@@ -446,8 +445,7 @@ function updatePostHandler(){
 
   postButton.setAttribute("onclick","post()")
   createup()
-
-  document.getElementById("header-createpost").innerHTML = "Create Post"
+  postinput.value="";
 }
 
 function successToast(text) {

@@ -120,7 +120,7 @@
     <div class="container">
       <div class="wrapper">
         <section class="post">
-          <header id="header-createpost">Create Post</header>
+          <header id="header-createpost">Create Post </header>
           <form action="#">
             <div class="content">
               <img class="post-img" src="../Assests/default profile.png" alt="logo">
@@ -136,14 +136,13 @@
             <textarea id="textArea" placeholder="What's on your mind?" spellcheck="false" required></textarea>
             <div class="theme-emoji">
               <img src="../Assests/theme.svg" alt="theme">
-              <img src="../Assests/smile.svg" alt="smile">
             </div>
             <div class="options">
               <p>Add to Your Post</p>
               <ul class="list">
                 <li><img src="../Assests/gallery.svg" alt="gallery" onclick="imagePrompt()"></li>
                 <li><img src="../Assests/tag.svg" alt="tag"></li>
-                <li><img src="../Assests/emoji.svg" alt="emoji"></li>
+                <li><img src="../Assests/emoji.svg" id="emojipicker" alt="emoji"></li>
                 <li><img src="../Assests/mic.svg" alt="voice"></li>
                 <li><img src="../Assests/more.svg" alt="more"></li>
               </ul>
@@ -236,5 +235,22 @@
     <div id="success"><span ><img id="check" src="../Assests/Check.png" alt=""></span></div>
     <div id="warning"><img id="cancel" src="../Assests/cancel.png" alt=""></div>
     <script src="./home.js"></script>
+    <script src="../vanilla-javascript-emoji-picker-master/vanillaEmojiPicker.js"></script>
+    <script>
+      new EmojiPicker({
+        trigger: [
+          {
+            selector: "#emojipicker",
+            insertInto: ["#textArea", ".two"], // '.selector' can be used without array
+          },
+          {
+            selector: "#emojipicker",
+            insertInto: "#textArea",
+          },  
+        ],
+        closeButton: true,
+        //specialButtons: green
+      });
+    </script>
   </body>
 </html>
