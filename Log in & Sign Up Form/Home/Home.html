@@ -20,28 +20,26 @@
                 src="../Assests/default profile.png"
                 alt="User Image"/>
             </li>
-            <span id="loggedinuser" onclick="dropup()" class=""></span>
+            <span id="loggedinuser"  class=""></span> <!--onclick="dropup()"-->
           </div>
           <li>
             <img
               id="notification"
-              onmousemove="notificationhover()"
               class="size"
               src="../Assests/notification.png"
               style="height: 25px; width: 25px"
               alt="Notifications"
-            />
+            /><!--onmousemove="notificationhover()"-->
           </li>
           <li>
             <img
               id="logout"
-              onclick="logout()"
-              onmousemove="logouthover()"
               class="size"
               src="../Assests/Log out.png"
               style="height: 22px; width: 25px"
               alt="Log Out"
-            />
+            /><!--onclick="logout()"
+              onmousemove="logouthover()"-->
           </li>
         </ul>
       </div>
@@ -94,7 +92,7 @@
             <label for="city">City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input id="city" type="text" value="" />
           </div>
-          <button onclick="update()">Update</button>
+          <button id="update" >Update</button><!-- onclick="update()"-->
         </div>
       </div>
 
@@ -102,15 +100,15 @@
     </div>
     <!-- dropdown -->
     <div class="main-container">
-      <div class="home"><button class="button" onclick="postDisplayHandler()">
+      <div class="home"><button class="button" ><!-- onclick="postDisplayHandler()"-->
         <img class="svg-icon" src="../Assests/house-solid.svg" alt="">
         <span class="lable">Home</span>
       </button></div>
-      <div class="my-profile" ><button class="button"onclick="myPostDisplayHandler()">
+      <div class="my-profile" ><button class="button"><!-- onclick="myPostDisplayHandler()"-->
         <img class="svg-icon" src="../Assests/circle-user-solid.svg" alt="">
         <span class="lable">My Posts</span>
       </button></div>
-      <div class="setting" onclick="profileUpdatedrop()"><button class="button">
+      <div class="setting" ><button class="button"><!-- onclick="profileUpdatedrop()"-->
         <img class="svg-icon" src="../Assests/gear-solid.svg" alt="">
         <span class="lable">Update Profile</span>
       </button></div>    
@@ -140,14 +138,14 @@
             <div class="options">
               <p>Add to Your Post</p>
               <ul class="list">
-                <li><img src="../Assests/gallery.svg" alt="gallery" onclick="imagePrompt()"></li>
+                <li><img src="../Assests/gallery.svg" alt="gallery" ></li><!--onclick="imagePrompt()"-->
                 <li><img src="../Assests/tag.svg" alt="tag"></li>
                 <li><img src="../Assests/emoji.svg" id="emojipicker" alt="emoji"></li>
                 <li><img src="../Assests/mic.svg" alt="voice"></li>
                 <li><img src="../Assests/more.svg" alt="more"></li>
               </ul>
             </div>
-            <button id="post-button" onclick="post()">Post</button>
+            <button id="post-button" >Post</button><!--onclick="post()"-->
           </form>
         </section>
         <section class="audience">
@@ -214,7 +212,7 @@
         </section>
       </div>
     </div>
-    <div class="create-button" onclick="createdown()"><button class="cbutton">
+    <div class="create-button"><button class="cbutton">
       <img class="svg" src="../Assests/pen-to-square-regular.svg" alt="">
       <span class="create-post">Create Post</span>
     </button></div>  
@@ -234,7 +232,8 @@
       </div>
     <div id="success"><span ><img id="check" src="../Assests/Check.png" alt=""></span></div>
     <div id="warning"><img id="cancel" src="../Assests/cancel.png" alt=""></div>
-    <script src="./home.js"></script>
+    <script src="./home.js" type="module"></script>
+    <script src="../Utils/config.js" type="module"></script>
     <script src="../vanilla-javascript-emoji-picker-master/vanillaEmojiPicker.js"></script>
     <script>
       new EmojiPicker({

@@ -15,12 +15,12 @@
             <br>
             <div class="container">
                 <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="email" required>
+                <input id="email" type="text" placeholder="Enter Email" name="email" required>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <input id="password" type="password" placeholder="Enter Password" name="psw" required>
 
-                <button id="loginbtn" onclick="login()" type="submit">Login</button>
+                <button id="loginbtn" type="submit">Login</button>
             </div>
             <div class="">
             <span class="psw"><a style="text-decoration: none; color: black;" href="#">Forgot Password?</a></span>
@@ -31,7 +31,8 @@
     <div class="loader"></div>
     <div id="success"><span ><img id="check" src="../Assests/Check.png" alt=""></span></div>
   <div id="warning"><img id="cancel" src="../Assests/cancel.png" alt=""></div>
-    <script src="login.js"></script>
+    <script src="login.js" type="module"></script>
+    <script src="../Utils/config.js" type="module"></script>
 </body>
 
 </html>

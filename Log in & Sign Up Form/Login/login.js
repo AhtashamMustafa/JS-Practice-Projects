@@ -1,28 +1,49 @@
+import { auth,signInWithEmailAndPassword, onAuthStateChanged} from "../Utils/config.js";
+
 let input = document.querySelectorAll("input");
+let email = document.querySelector("#email");
+let password = document.querySelector("#password");
 let form = document.querySelector(".form");
 let loader = document.querySelector(".loader");
+let loginBtn = document.querySelector("#loginbtn");
 
-let loggedInUser = JSON.parse(localStorage.getItem('LoggedInuser'))
+// onAuthStateChanged(auth, (user) => {
+//   if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/auth.user
+//     const uid = user.uid;
+//     window.location.href = '../Home/home.html'
+//     // ...
+//   } else {
+//     // User is signed out
+//     // ...
+//   }
+// });
+// let loggedInUser = JSON.parse(localStorage.getItem('LoggedInuser'))
 
-if(loggedInUser) window.location.href = '../Home/Home.html'
+// if(loggedInUser) window.location.href = '../Home/Home.html'
 
-function login() {
-  let users = JSON.parse(localStorage.getItem("users")) || [];
+function loginHandler() {
+  // let users = JSON.parse(localStorage.getItem("users")) || [];
 
-  if (input[0].value == "" || input[1].value == "") {
+  if (email.value == "" || password.value == "") {
     warningToast("Please fill all the fields");
     return;
   }
 
-  if (input[1].value.length < 8) return warningToast('password length should be atleast 8 characters')
+  if (password.value.length < 8) return warningToast('password length should be atleast 8 characters')
 
-  if (!users) return warningToast("Sorry no user found")
+  // if (!users) return warningToast("Sorry no user found")
 
-  let find = users.find((el)=>{
-    return el.email == input[0].value && el.password == input[1].value
-  })
+  // let find = users.find((el)=>{
+  //   return el.email == input[0].value && el.password == input[1].value
+  // })
 
-  if (find) {
+  signInWithEmailAndPassword(auth, email.value, password.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
     successToast("Login Successful.")
 
     form.style.display='none'
@@ -33,13 +54,17 @@ function login() {
 
     setTimeout(() => {
       window.location.href = '../Home/home.html'}, 3000)
-    let obj=[]
-    obj.push(find)
-    localStorage.setItem('LoggedInuser',JSON.stringify(obj))
-  } else {
-    warningToast("Invalid credentials.Please try again.");
-  }
-}
+    
+  }).catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage)
+  })};
+
+  // let obj=[]
+  // obj.push(find)
+  // localStorage.setItem('LoggedInuser',JSON.stringify(obj)) 
+  // warningToast("Invalid credentials.Please try again.");
 
 // Toast functions
 function successToast(text) {
@@ -56,3 +81,5 @@ function warningToast(text) {
   warning.className = "show";
   setTimeout(function(){ warning.className = warning.className.replace("show", "");}, 3000);
 }
+
+loginBtn.addEventListener("click",loginHandler)
