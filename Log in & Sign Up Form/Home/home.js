@@ -1,4 +1,4 @@
-import { auth, signOut } from "../Utils/config.js";
+import { auth, doc, onAuthStateChanged, signOut,db,getDoc } from "../Utils/config.js";
 
 const firstContainer = document.querySelector("#container1");
 const thirdContainer = document.querySelector("#container3");
@@ -33,7 +33,40 @@ let delet = document.querySelector("#delete")
 let imageUrl;
 let oldPost;
 let oldPostIndex;
+let docRef;
+let docSnap;
 
+
+onAuthStateChanged(auth, async(user) => {
+  if (user) {
+    const uid = user.uid; //uid
+    console.log(uid, "==>> uid");
+
+    docRef = doc(db, "users", uid);
+    docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+
+    } else {
+      // docSnap.data() will be undefined in this case
+      warningToast("No such document!");
+    if(location.pathname !== './Login/login.html' && location.pathname !== './Signup/signup.html'){
+      window.location= '../Login/login.html';
+    }
+    
+    }
+
+    // ...
+  } else {
+    warningToast("user sign out")
+    // User is signed out
+    // ...
+    
+  }
+})
+
+setTimeout(()=>{successToast(`Welcome! ${docSnap.data().userName} 😊`)},1800)
 // Getting data from localstorage
 
 // let users = JSON.parse(localStorage.getItem("users")) ?? [];
@@ -75,7 +108,7 @@ function logout() {
   // localStorage.removeItem("LoggedInuser");
   signOut(auth).then(() => {
     // Sign-out successful.
-    window.location.href = "../Login/Login.html";
+    window.location.href = "../Login/login.html";
   }).catch((error) => {
     // An error happened.
     console.log(error)
